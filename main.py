@@ -12,6 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # Import your forms from the forms.py
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 import smtplib
+import os
 
 
 app = Flask(__name__)
@@ -21,7 +22,7 @@ ckeditor = CKEditor(app)
 Bootstrap5(app)
 
 OWN_EMAIL = "stillspirit@gmail.com"
-OWN_PASSWORD = "hlgt cgnh bhyi bmsv"
+OWN_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
 
 # CREATE DATABASE
