@@ -21,6 +21,7 @@ app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
+
 OWN_EMAIL = "stillspirit@gmail.com"
 OWN_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
@@ -263,5 +264,5 @@ def send_email(name, email, phone, message):
         connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message)
 
 
-if __name__ == "__main__":
-    app.run(debug=True, port=5002)
+#if __name__ == "__main__":
+#    app.run(debug=True, port=5002)
