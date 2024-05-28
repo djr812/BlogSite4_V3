@@ -258,5 +258,5 @@ def send_email(name, email, phone, message):
         connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message)
 
 
-#if __name__ == "__main__":
+# if __name__ == "__main__":
 #    app.run(debug=True, port=5002)
