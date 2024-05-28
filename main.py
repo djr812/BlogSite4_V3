@@ -1,5 +1,5 @@
 from datetime import date
-from flask import Flask, abort, render_template, redirect, url_for, flash, request
+from flask import Flask, abort, render_template, redirect, url_for, flash, request, send_from_directory
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
@@ -257,6 +257,15 @@ def send_email(name, email, phone, message):
         connection.login(OWN_EMAIL, OWN_PASSWORD)
         connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message)
 
+
+@app.route("/google37d26c312bdd0153.html")
+def google_site_verf():
+    return render_template("google37d26c312bdd0153.html")
+
+
+@app.route('/sitemap.xml')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 # if __name__ == "__main__":
 #    app.run(debug=True, port=5002)
