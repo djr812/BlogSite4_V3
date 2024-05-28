@@ -50,12 +50,8 @@ class User(UserMixin, db.Model):
 class BlogPost(db.Model):
     __tablename__ = "blog_posts"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-
-    # Create Foreign Key, "users.id" the users refers to the tablename of User.
     author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("users.id"))
-    # Create reference to the User object. The "posts" refers to the posts property in the User class.
     author = relationship("User", back_populates="posts")
-
     title: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
     subtitle: Mapped[str] = mapped_column(String(250), nullable=False)
     date: Mapped[str] = mapped_column(String(250), nullable=False)
@@ -189,7 +185,6 @@ def show_post(post_id):
     return render_template("post.html", post=requested_post, current_user=current_user, form=comment_form)
 
 
-# TODO: Use a decorator so only an admin user can create a new post
 @app.route("/new-post", methods=["GET", "POST"])
 @admin_only
 def add_new_post():
@@ -209,7 +204,6 @@ def add_new_post():
     return render_template("make-post.html", form=form, current_user=current_user)
 
 
-# TODO: Use a decorator so only an admin user can edit a post
 @app.route("/edit-post/<int:post_id>", methods=["GET", "POST"])
 @admin_only
 def edit_post(post_id):
@@ -264,5 +258,5 @@ def send_email(name, email, phone, message):
         connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message)
 
 
-# if __name__ == "__main__":
+#if __name__ == "__main__":
 #    app.run(debug=True, port=5002)
